@@ -1,0 +1,40 @@
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css"/>
+</head>
+<body>
+  <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+  <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+  <script>
+  $(document).ready(function() {
+    $('#display').DataTable( {
+        ajax: {url: 'data.json', dataSrc: ''},
+        paging: false,
+        columns: [
+            { data: 'fileName',
+              render: function ( data, type, full, meta ) {
+                    return '<a href="'+data+'">'+data+'</a>';
+              }
+            },
+            { data: 'title', defaultContent:'' },
+            { data: 'artist.0', defaultContent:'' },
+            { data: 'album', defaultContent:'' },
+            { data: 'duration', defaultContent:0 }
+        ],
+        deferRender: true
+    } );
+  } );
+  </script>
+  <table id="display" class="display" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th>FileName</th>
+                <th>Title</th>
+                <th>Artist</th>
+                <th>Album</th>
+                <th>Duration</th>
+            </tr>
+        </thead>
+  </table>
+</body>
+</html>
